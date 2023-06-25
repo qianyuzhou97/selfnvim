@@ -25,7 +25,6 @@ vim.keymap.set("n", "<leader>o", "<C-w>o", opt)
 vim.keymap.set("n", "<leader>c", "<C-w>c", opt)
 vim.keymap.set("n", "<leader>p", "<C-w>p", opt)
 
-
 vim.api.nvim_set_keymap('n', 'sl', ':set splitright<CR>:vsplit<CR>', {})
 vim.api.nvim_set_keymap('n', 'sh', ':set nosplitright<CR>:vsplit<CR>', {})
 vim.api.nvim_set_keymap('n', 'sk', ':set nosplitbelow<CR>:split<CR>', {})
@@ -51,5 +50,24 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-"folke/which-key.nvim",
+	"folke/which-key.nvim",
+	{
+		"RRethy/nvim-base16",
+		lazy = true,
+	},
+	    {
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+-- or                              , branch = '0.1.1',
+      dependencies = { 'nvim-lua/plenary.nvim'},
+      cmd = "Telescope"
+    },
+   	{
+		event = "VeryLazy",
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+	},
 })
+vim.cmd('colorscheme base16-gruvbox-dark-soft')
+
+
+require("mason").setup()
