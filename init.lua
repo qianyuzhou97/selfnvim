@@ -61,6 +61,15 @@ require("lazy").setup({
 		},
 	},
 	{
+		"tpope/vim-rhubarb",
+		event = "VeryLazy",
+	},
+	{
+		"rhysd/conflict-marker.vim",
+		event = "VeryLazy",
+	},
+
+	{
 		"windwp/nvim-autopairs",
 		event = "VeryLazy",
 		config = function()
