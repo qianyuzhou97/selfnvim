@@ -2,7 +2,7 @@ return {
 	{
 		keys = {
 			{ "<leader>t", ":NERDTreeToggle<CR>", desc = "toggle nerdtree" },
-			{ "<leader>l", ":NERDTreeFind<CR>", desc = "nerdtree find" },
+			{ "<leader>f", ":NERDTreeFind<CR>", desc = "nerdtree find" },
 		},
 		cmd = { "NERDTreeToggle", "NERDTree", "NERDTreeFind" },
 		"preservim/nerdtree",
