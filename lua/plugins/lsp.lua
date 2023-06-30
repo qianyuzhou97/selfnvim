@@ -8,7 +8,15 @@ return {
 		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
 		config = function()
 			require("mason").setup()
-			require("mason-lspconfig").setup()
+		end,
+	},
+	{
+		event = "VeryLazy",
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = { "lua_ls", "gopls" },
+			})
 		end,
 	},
 	{
@@ -22,6 +30,10 @@ return {
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.black,
+					null_ls.builtins.diagnostics.golangci_lint,
+					null_ls.builtins.formatting.goimports,
+					null_ls.builtins.code_actions.gomodifytags,
+					null_ls.builtins.code_actions.impl,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
@@ -116,6 +128,9 @@ return {
 			})
 
 			require("lspconfig").pyright.setup({
+				capabilities = capabilities,
+			})
+			require("lspconfig").gopls.setup({
 				capabilities = capabilities,
 			})
 		end,
