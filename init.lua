@@ -2,6 +2,7 @@ local set = vim.o
 set.relativenumber = true
 set.number = true
 set.clipboard = "unnamed"
+set.updatetime = 200
 
 -- hightlight the copy
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {

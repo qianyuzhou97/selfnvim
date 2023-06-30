@@ -89,6 +89,13 @@ return {
 
 			-- Set up lspconfig.
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local function on_attach(client, bufnr)
+				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+				-- Highlight the line of the cursor on CursorHold & clear it on CursorMoved
+				vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
+				vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
+			end
 			require("neodev").setup({
 				-- add any options here, or leave empty to use the default settings
 			})
@@ -132,6 +139,7 @@ return {
 			})
 			require("lspconfig").gopls.setup({
 				capabilities = capabilities,
+				on_attach = on_attach,
 			})
 		end,
 	},
